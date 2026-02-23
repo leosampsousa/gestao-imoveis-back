@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,5 +33,11 @@ public class HospedeService {
     private boolean hospedeJaCadastrado(String documento) {
         Optional<Hospede> optHospede = hospedeRepository.findByDocumento(documento);
         return optHospede.isPresent();
+    }
+
+    public List<HospedeDto> listar() {
+        return hospedeRepository.findAll().stream()
+                .map(HospedeDto::fromEntity)
+                .toList();
     }
 }

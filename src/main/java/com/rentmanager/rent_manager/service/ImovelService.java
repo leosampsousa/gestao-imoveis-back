@@ -34,6 +34,12 @@ public class ImovelService {
         return ImovelDto.fromEntity(imovelSalvo);
     }
 
+    public List<ImovelDto> listarTodos() {
+        return imovelRepository.findAll().stream()
+                .map(ImovelDto::fromEntity)
+                .toList();
+    }
+
     @Transactional
     public boolean salvarFotos(Long id, List<MultipartFile> files) throws IOException {
         Optional<Imovel> optImovel = imovelRepository.findById(id);

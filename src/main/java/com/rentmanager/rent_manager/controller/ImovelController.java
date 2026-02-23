@@ -35,6 +35,11 @@ public class ImovelController {
         return ResponseEntity.created(location).body(imovelSalvo);
     }
 
+    @GetMapping
+    public ResponseEntity<List<ImovelDto>> listarTodos() {
+        return ResponseEntity.ok(imovelService.listarTodos());
+    }
+
     @PostMapping("/{id}/fotos")
     public ResponseEntity<?> uploadFotos(
             @PathVariable Long id,
