@@ -7,6 +7,7 @@ import com.rentmanager.rent_manager.exception.BusinessException;
 import com.rentmanager.rent_manager.repository.ImovelFotoRepository;
 import com.rentmanager.rent_manager.repository.ImovelRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,17 +17,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ImovelService {
 
     private final ImovelRepository imovelRepository;
 
     private final ImovelFotoRepository imovelFotoRepository;
 
-    @Autowired
-    public ImovelService(ImovelRepository imovelRepository, ImovelFotoRepository imovelFotoRepository) {
-        this.imovelRepository = imovelRepository;
-        this.imovelFotoRepository = imovelFotoRepository;
-    }
 
     @Transactional
     public ImovelDto salvar(ImovelDto dto) {

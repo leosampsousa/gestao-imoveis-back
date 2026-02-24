@@ -35,15 +35,7 @@ public class ReservaService {
             throw new BusinessException("A data de início não pode ser posterior à data de fim");
         }
 
-        Reserva reserva = new Reserva();
-        reserva.setImovel(imovel);
-        reserva.setHospede(hospede);
-        reserva.setDataInicio(dto.getDataInicio());
-        reserva.setDataFim(dto.getDataFim());
-        reserva.setPrecoTotal(dto.getPrecoTotal());
-
-        reserva = reservaRepository.save(reserva);
-        return toDto(reserva);
+        return toDto(reservaRepository.save(new Reserva(imovel, hospede, dto.getDataInicio(), dto.getDataFim(), dto.getPrecoTotal())));
     }
 
     @Transactional(readOnly = true)
