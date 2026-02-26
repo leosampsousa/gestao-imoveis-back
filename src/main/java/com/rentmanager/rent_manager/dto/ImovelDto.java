@@ -22,7 +22,6 @@ public class ImovelDto {
 
     private Long id;
 
-    @NotBlank(message = mensagemErroCampoObrigatorio)
     @Size(max = 100, message = mensagemErroTamanhoLimite)
     private String nome;
 

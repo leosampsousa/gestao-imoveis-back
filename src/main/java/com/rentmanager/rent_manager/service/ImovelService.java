@@ -42,9 +42,11 @@ public class ImovelService {
         }
 
         Imovel imovel = optImovel.get();
-        int count = 0;
-        for (MultipartFile file : files) {
-            imovelFotoRepository.save(new ImovelFoto(imovel, file.getBytes(), file.getContentType(), count++));
+        if (files != null && !files.isEmpty()) {
+            int count = 0;
+            for (MultipartFile file : files) {
+                imovelFotoRepository.save(new ImovelFoto(imovel, file.getBytes(), file.getContentType(), count++));
+            }
         }
 
         return true;

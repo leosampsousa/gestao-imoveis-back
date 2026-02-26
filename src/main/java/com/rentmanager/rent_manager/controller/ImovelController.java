@@ -38,7 +38,7 @@ public class ImovelController {
     @PostMapping("/{id}/fotos")
     public ResponseEntity<?> uploadFotos(
             @PathVariable Long id,
-            @RequestParam("files") List<MultipartFile> files
+            @RequestParam(value = "files", required = false) List<MultipartFile> files
     ) throws IOException {
         imovelService.salvarFotos(id, files);
         return ResponseEntity.ok().build();
