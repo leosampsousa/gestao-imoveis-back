@@ -39,6 +39,11 @@ public class ImovelService {
 
     @Transactional
     public boolean salvarFotos(Long id, List<MultipartFile> files) throws IOException {
+
+        if (files == null || files.isEmpty()) {
+            return true;
+        }
+
         Optional<Imovel> optImovel = imovelRepository.findById(id);
         if (optImovel.isEmpty()) {
             throw new BusinessException("Imóvel não existe");
