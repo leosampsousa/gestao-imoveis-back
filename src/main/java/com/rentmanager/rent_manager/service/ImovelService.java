@@ -36,17 +36,20 @@ public class ImovelService {
 
     @Transactional
     public boolean salvarFotos(Long id, List<MultipartFile> files) throws IOException {
+
+        if (files == null || files.isEmpty()) {
+            return true;
+        }
+
         Optional<Imovel> optImovel = imovelRepository.findById(id);
         if (optImovel.isEmpty()) {
             throw new BusinessException("Imóvel não existe");
         }
 
         Imovel imovel = optImovel.get();
-        if (files != null && !files.isEmpty()) {
-            int count = 0;
-            for (MultipartFile file : files) {
-                imovelFotoRepository.save(new ImovelFoto(imovel, file.getBytes(), file.getContentType(), count++));
-            }
+        int count = 0;
+        for (MultipartFile file : files) {
+            imovelFotoRepository.save(new ImovelFoto(imovel, file.getBytes(), file.getContentType(), count++));
         }
 
         return true;
